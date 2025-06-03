@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <script src="{{ url_for('static', filename='js/cdn.js') }}"></script>
+
+    <!--    <script src="{{ url_for('static', filename='js/color-modes.js') }}"></script>-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="Tamal" content="Website" />
+    <!--    <meta name="generator" content="Hugo 0.122.0" />-->
+    <title>Login-SMS</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <!--    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />-->
+  </head>
+  <body class="h-screen bg-[#FDECD9]">
+    <!--  <div class="bg-[#004aad] h-[10rem] w-[10rem] rounded-full blur-[7rem] top-[2rem] left-[2rem] absolute"></div>-->
+
+    <div class="h-screen w-screen flex md:flex-row flex-col">
+      <div
+        class="absolute h-[100%] opacity-20 z-[-3] w-[100%] bg-[url('{{ url_for('static', filename='img/brown-dots.svg') }}')] bg-center bg-cover"
+      ></div>
+
+      <div
+        class="z-[3] h-[50%] md:h-auto backdrop-blur-[20px] text-center bg-[rgba(113,25,18,0.6)] w-screen md:w-[22rem] px-6 pt-4 pb-6 md:rounded-[3rem] md:absolute md:left-[25%] lg:left-[20%] md:translate-x-[-50%] md:top-[50%] md:translate-y-[-50%]"
+      >
+        <h1 class="jersey text-[4rem] text-[#FDECD9]">Login</h1>
+        <form action="/login" method="POST" class="flex flex-col text-left">
+          <div class="flex flex-row justify-center mb-5 mt-3">
+            <div
+              class="flex flex-row rounded-full justify-center py-1 px-1 bg-[rgba(81,15,10,0.34)]"
+            >
+              <input
+                type="radio"
+                name="user"
+                id="student"
+                value="Student"
+                checked
+              />
+              <label
+                for="student"
+                class="radio-Label rounded-full text-[#FDECD9] text-[0.9rem] px-[1rem] py-2"
+                >Student</label
+              >
+
+              <input type="radio" name="user" id="teacher" value="Teacher" />
+              <label
+                for="teacher"
+                class="rounded-full text-[#FDECD9] text-[0.9rem] radio-Label px-[1rem] py-2"
+                >Teacher</label
+              >
+
+              <input type="radio" name="user" id="admin" value="Admin" />
+              <label
+                for="admin"
+                class="rounded-full text-[#FDECD9] text-[0.9rem] radio-Label px-[1rem] py-2"
+                >Admin</label
+              >
+            </div>
+          </div>
+          <label
+            for="userId"
+            class="text-[1.1rem] mb-[0.2rem] font-[righteous] text-[#FDECD9]"
+            >User ID:</label
+          >
+          <input
+            type="text"
+            id="userId"
+            class="p-[0.45rem] text-[0.9rem] bg-[#FDECD9] rounded-[0.4rem]"
+            name="userId"
+          />
+          <label
+            for="pwd"
+            class="text-[1.1rem] mt-3 mb-[0.2rem] font-[righteous] text-[#FDECD9]"
+            >Password:</label
+          >
+          <input
+            type="password"
+            id="pwd"
+            class="p-[0.45rem] text-[0.9rem] bg-[#FDECD9] rounded-[0.4rem]"
+            name="pwd"
+          />
+          <div class="w-full text-center pt-3">
+            <input
+              type="submit"
+              class="rounded-full text-[#FDECD9] text-[1.15rem] font-[righteous] cursor-pointer hover:bg-[rgba(81,15,10,0.5)] mb-4 py-[0.6rem] px-[2.2rem] bg-[#510F0A] mt-4"
+              value="Login"
+            />
+          </div>
+        </form>
+      </div>
+      <div
+        class="z-[-1] md:absolute h-[50vh] md:h-[100vh] md:py-[5.5rem] w-[100%] md:w-[84%] lg:w-[75%] md:pl-10 md:pr-[5.5rem] lg:pr-[7.5rem] md:right-[0px] flex text-center align-middle align-center items-center justify-center"
+      >
+        <div
+          class="hidden md:inline absolute z-[2] top-[1.8rem] right-[1.5rem] h-screen"
+        >
+          <img
+            class="h-[25rem]"
+            src="{{ url_for('static', filename='img/layer.png') }}"
+            alt=""
+          />
+        </div>
+        <div
+          class="z-[-1] w-full bg-[url('{{ url_for('static', filename='img/gms322.png') }}')] bg-no-repeat bg-cover bg-center md:rounded-[8rem] md:max-h-[46rem] md:h-[100%] h-[100%] box-border"
+        ></div>
+      </div>
+    </div>
+
+    <div
+      class="bg-[#803630] z-[10] md:pt-7 md:pl-16 md:pr-20 md:pb-9 px-12 py-6 fixed left-[0px] rounded-ee-[3.8rem] top-[0px]"
+    >
+      <h1
+        class="text-[#FDECD9] righteous md:text-[2.6rem] text-[2rem] font-bold"
+      >
+        GMSSS-32
+      </h1>
+    </div>
+  </body>
+</html>

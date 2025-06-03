@@ -1,0 +1,69 @@
+/* stylelint-disable @stylistic/selector-list-comma-newline-after */
+@font-face {
+  font-family: jersey;
+  src: url("../font/Jersey15.ttf");
+}
+@font-face {
+  font-family: Pacifico;
+  src: url("../font/Pacifico.ttf");
+}
+@font-face {
+  font-family: Righteous;
+  src: url("../font/Righteous.ttf");
+}
+@font-face {
+  font-family: Italianno;
+  src: url("../font/Italianno.ttf");
+}
+* {
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.jersey {
+  font-family: jersey;
+}
+.pacifico {
+  font-family: Pacifico;
+}
+.righteous {
+  font-family: Righteous;
+}
+.italianno {
+  font-family: Italianno;
+}
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+*:focus {
+  outline: none;
+}
+*:active {
+  outline: none;
+}
+input[type="radio"]:checked + label,
+input[type="radio"]:checked + .radio-Label {
+  /* display: none; */
+  background-color: #510f0a;
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+.bdown {
+  border-bottom: 0.1rem solid #d1d5db;
+  /* border-bottom: 2rem solid; */
+  /* border-color: #fff; */
+}
+
+form {
+  all: unset; /* Resets most styles */
+}
+input {
+  /* all: unset;  */
+  /* border-bottom: 0.1rem solid #000; */
+}
+a {
+  all: unset;
+}

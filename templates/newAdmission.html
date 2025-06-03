@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Tailwind CDN -->
+    <script src="{{ url_for('static', filename='js/cdn.js') }}"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Admission</title>
+    <script>
+      function updateForm() {
+        // Get radio button values
+        let option1 = document.getElementById("student").checked;
+        let option2 = document.getElementById("teacher").checked;
+        let option3 = document.getElementById("admin").checked;
+
+        let submit_label = document.getElementById("submit_label");
+
+        if (option1) {
+          submit_label.style.bottom = "4rem";
+          submit_label.style.height = "3.8rem";
+          submit_label.style.position = "absolute";
+        } else if (option2) {
+          submit_label.style.bottom = "-4rem";
+          submit_label.style.position = "absolute";
+        } else if (option3) {
+          submit_label.style.bottom = "-4rem";
+          submit_label.style.position = "absolute";
+        }
+        // Get form elements
+
+        let label1 = document.getElementById("label1");
+        let label2 = document.getElementById("label2");
+        let label3 = document.getElementById("label3");
+        let label4 = document.getElementById("label4");
+        let input1 = document.getElementById("gender");
+        let input2 = document.getElementById("class");
+        let input3 = document.getElementById("section");
+        let input4 = document.getElementById("dob");
+
+        // Logic to show/hide or enable/disable inputs
+        if (option1) {
+          label1.style.display = "block";
+          label2.style.display = "block";
+          label3.style.display = "block";
+          label4.style.display = "block";
+
+          input1.style.display = "block";
+          input2.style.display = "block";
+          input3.style.display = "block";
+          input4.style.display = "block";
+
+          input1.disabled = false;
+          input2.disabled = false;
+          input3.disabled = false;
+          input4.disabled = false;
+
+          label1.disabled = false;
+          label2.disabled = false;
+          label3.disabled = false;
+          label4.disabled = false;
+        } else if (option2) {
+          label1.style.display = "none";
+          label2.style.display = "none";
+          label3.style.display = "none";
+          label4.style.display = "none";
+
+          input1.style.display = "none";
+          input2.style.display = "none";
+          input3.style.display = "none";
+          input4.style.display = "none";
+
+          input1.disabled = true;
+          input2.disabled = true;
+          input3.disabled = true;
+          input4.disabled = true;
+
+          label1.disabled = true;
+          label2.disabled = true;
+          label3.disabled = true;
+          label4.disabled = true;
+        } else if (option3) {
+          label1.style.display = "none";
+          label2.style.display = "none";
+          label3.style.display = "none";
+          label4.style.display = "none";
+
+          input1.style.display = "none";
+          input2.style.display = "none";
+          input3.style.display = "none";
+          input4.style.display = "none";
+
+          input1.disabled = true;
+          input2.disabled = true;
+          input3.disabled = true;
+          input4.disabled = true;
+
+          label1.disabled = true;
+          label2.disabled = true;
+          label3.disabled = true;
+          label4.disabled = true;
+        }
+      }
+    </script>
+    <style>
+      label {
+        font-family: righteous;
+        color: white;
+        font-size: 1.1rem;
+        padding-top: 1rem;
+        padding-bottom: 0.2rem;
+      }
+    </style>
+  </head>
+  <body class="h-screen bg-[#FDECD9]">
+    <!-- Brown Dots Overlay -->
+    <div class="absolute top-[50%] ml-[1rem] translate-y-[-24%]">
+      <h1 class="text-[4.8vw] italianno text-[#803630]">New Admission</h1>
+      <div class="aspect-[1076/569]">
+        <img
+          src="{{ url_for('static', filename='img/gal.png') }}"
+          alt=""
+          class="max-h-[13.5rem]"
+        />
+      </div>
+    </div>
+    <div
+      class="absolute top-0 h-[100%] opacity-20 z-[-3] w-[100%] bg-[url('{{ url_for('static', filename='img/brown-dots.svg') }}')] bg-center bg-cover"
+    ></div>
+
+    <!-- GMSS_32 Menu -->
+    <div
+      class="bg-[#803630] z-[10] md:pt-7 md:pl-16 md:pr-20 md:pb-9 px-12 py-6 fixed left-[0px] rounded-ee-[3.8rem] top-[0px]"
+    >
+      <h1
+        class="text-[#FDECD9] righteous md:text-[2.6rem] text-[2rem] font-bold"
+      >
+        GMSSS-32
+      </h1>
+    </div>
+    <!-- Container wrapper -->
+    <div
+      class="bg-[#803630] min-h-[28rem] w-[60%] rounded-[3rem] absolute top-[50%] left-[50%] transform translate-x-[-30%] translate-y-[-50%] overflow-visble"
+    >
+      <div class="relative h-full w-full overflow-visible">
+        <h1 class="text-[#fff] text-[2.4rem] righteous pt-[1.5rem] pl-[2.5rem]">
+          New Admission (Register)
+        </h1>
+        <form
+          action="/newAdmission"
+          method="POST"
+          class="flex flex-row justify-center items-strech gap-x-[6rem] pl-[2.5rem] pr-[2.5rem] pt-[0.7rem] pb-[3.5rem]"
+        >
+          <div class="flex flex-col flex-[5]">
+            <div class="flex flex-row justify-center mb-0 mt-3 rounded-full">
+              <div class="bg-[rgba(253,236,217,0.5)] rounded-full">
+                <div
+                  class="flex flex-row rounded-full justify-center py-1 px-1 bg-[rgba(81,15,10,0.34)]"
+                >
+                  <input
+                    type="radio"
+                    name="user"
+                    id="student"
+                    value="Student"
+                    checked
+                    onclick="updateForm()"
+                  />
+                  <label
+                    for="student"
+                    class="radio-Label rounded-full text-[#FDECD9] text-[0.9rem] px-[1rem] py-2"
+                    >Student</label
+                  >
+                  <input
+                    type="radio"
+                    name="user"
+                    id="teacher"
+                    value="Teacher"
+                    onclick="updateForm()"
+                  />
+                  <label
+                    for="teacher"
+                    class="rounded-full text-[#FDECD9] text-[0.9rem] radio-Label px-[1rem] py-2"
+                    >Teacher</label
+                  >
+
+                  <input
+                    type="radio"
+                    name="user"
+                    id="admin"
+                    value="Admin"
+                    onclick="updateForm()"
+                  />
+                  <label
+                    for="admin"
+                    class="rounded-full text-[#FDECD9] text-[0.9rem] radio-Label px-[1rem] py-2"
+                    >Admin</label
+                  >
+                </div>
+              </div>
+            </div>
+            <label for="name">Name</label>
+            <input
+              required
+              type="text"
+              name="username"
+              id="name"
+              placeholder="Name"
+              class="p-[0.45rem] text-[0.9rem] bg-[#FDECD9] rounded-[0.4rem] righteous"
+            />
+            <div class="flex flex-row gap-x-[2rem]">
+              <div class="flex flex-col">
+                <label for="dob" id="label1">Date of Birth</label>
+                <input
+                  type="date"
+                  name="dob"
+                  id="dob"
+                  required
+                  class="p-[0.45rem] text-[0.8rem] bg-[#FDECD9] rounded-[0.4rem] w-[8.8rem] righteous"
+                />
+              </div>
+              <div class="flex flex-col">
+                <label for="gender" id="label2">Gender</label>
+                <select
+                  name="gender"
+                  id="gender"
+                  required
+                  class="p-[0.45rem] text-[0.8rem] bg-[#FDECD9] rounded-[0.4rem] w-[8.8rem] righteous"
+                >
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="flex flex-row gap-x-[2rem]">
+              <div class="flex flex-col">
+                <label for="class" id="label3">Class</label>
+                <select
+                  name="class"
+                  id="class"
+                  required
+                  class="p-[0.45rem] text-[0.8rem] bg-[#FDECD9] rounded-[0.4rem] w-[8.8rem] righteous"
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+              <div class="flex flex-col">
+                <label for="Section" id="label4">Section</label>
+                <select
+                  name="section"
+                  id="section"
+                  required
+                  class="p-[0.45rem] text-[0.8rem] bg-[#FDECD9] rounded-[0.4rem] w-[8.8rem] righteous"
+                >
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-[4] flex flex-col">
+            <label for="userId">user ID (for login)</label>
+            <input
+              type="text"
+              name="userId"
+              id="userId"
+              required
+              class="p-[0.45rem] text-[0.9rem] bg-[#FDECD9] rounded-[0.4rem] righteous"
+            />
+            <label for="pwd">Password</label>
+            <input
+              type="password"
+              name="pwd"
+              id="pwd"
+              required
+              class="p-[0.45rem] text-[0.9rem] bg-[#FDECD9] rounded-[0.4rem] righteous"
+            />
+
+            <input
+              hidden
+              type="submit"
+              id="submit"
+              value="Submit"
+              class="absolute right-[0] bottom-[4rem] righteous px-[3.6rem] py-[0.8rem] bg-[#FDECD9] rounded-s-[1rem] text-[1.4rem]"
+            />
+            <label
+              for="submit"
+              class="absolute right-[0] bottom-[4rem] righteous px-[3.6rem] py-[0.8rem] bg-[#FDECD9] rounded-s-[1rem] text-[1.4rem] flex items-center justify-center align-center text-center gap-x-[0.8rem]"
+              id="submit_label"
+              ><h1 class="text-[#803630]">Submit</h1>
+              <img
+                src="{{ url_for('static', filename='img/arrow.svg') }}"
+                alt=""
+                class="w-[2.2rem] h-[2.2rem]"
+              />
+            </label>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

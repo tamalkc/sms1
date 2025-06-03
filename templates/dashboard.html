@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Tailwind CDN -->
+    <script src="{{ url_for('static', filename='js/cdn.js') }}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <!-- CSS Link -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body class="md:h-screen bg-[#FDECD9]">
+    <!-- Brown Dots Overlay -->
+    <div
+      class="absolute h-[100%] opacity-20 z-[-3] w-[100%] bg-[url('{{ url_for('static', filename='img/brown-dots.svg') }}')] bg-center bg-cover"
+    ></div>
+
+    <!-- GMSS_32 Menu -->
+    <div
+      class="bg-[#803630] z-[10] md:pt-7 md:pl-16 md:pr-20 md:pb-9 px-12 py-6 fixed left-[0px] rounded-ee-[3.8rem] top-[0px]"
+    >
+      <h1
+        class="text-[#FDECD9] righteous md:text-[2.6rem] text-[2rem] font-bold"
+      >
+        GMSSS-32
+      </h1>
+    </div>
+
+    <!-- Body wrapper -->
+    <div class="md:h-screen w-screen flex flex-col">
+      <!-- TOP Section -->
+      <div
+        class="md:h-[22%] lg:h-[27%] w-screen flex flex-col md:flex-row justify-between top-[2rem] mt-[2rem] lg:pl-[3.5rem] lg:pr-[3.5rem] md:pl-[1rem] md:pr-[1rem] overflow-visible gap-x-[1rem]"
+      >
+        <!-- HEllo text -->
+        <div class="flex items-end overflow-visible">
+          <h1
+            class="italianno text-[2rem] md:text-[4rem] lg:text--[6rem] leading-[100%] translate-y-[25%] text-[#691008] lg:text-[5.8vw] line-clamp-1 overflow-visble"
+          >
+            Hello {{ username }}
+          </h1>
+        </div>
+
+        <!-- Gallery -->
+        <div class="flex aspect-[1076/569] items-center text-center h-[100%]">
+          <img
+            class="max-h-[100%] aspect-[1076/569]"
+            src="{{ url_for('static', filename='img/gal.png') }}"
+            alt=""
+          />
+        </div>
+
+        <!-- Profile Menu -->
+        <div
+          class="bg-[#A9675C] backdrop-blur-[15rem] h-[100%] w-[15rem] rounded-[3.6rem] flex flex-col items-center"
+        >
+          <!-- Prf top container -->
+          <div
+            class="h-auto w-[100%] flex justify-between items-center flex-row flex-[4]"
+          >
+            <!-- Prf About -->
+            <div
+              class="flex flex-col justify-center ml-[2.1rem] translate-y-[14%]"
+            >
+              <h1
+                class="text-[1.1rem] items-center righteous float-left text-[#FFF]"
+              >
+                {{ username }}
+              </h1>
+              <h2
+                class="text-[#FFF] opacity-[64%] righteous text-[1rem] leading-[0.9rem]"
+              >
+                {{ user_class }}-{{ section }}
+              </h2>
+            </div>
+
+            <!-- Prf Image-->
+            <img
+              src="{{url_for('static', filename='img/pp.png')}}"
+              alt=""
+              class="w-[5.0rem] rounded-full float-right mt--[0.7rem] mr--[0.7rem]"
+            />
+          </div>
+
+          <!-- HR -->
+          <hr
+            width="86%"
+            class="mt-[0.6rem] h-1 border-t-[0.1rem] border-l-0 border-r-0 border-b-0"
+          />
+
+          <!-- Prf Buttons -->
+          <div class="flex flex-col items-strech w-[100%] z-[10] flex-[5]">
+            <!-- Edit Profile -->
+            <div
+              class="flex flex-row items-center justify-between pl-[2.1rem] pr-[2.24rem] [100%] flex-1"
+            >
+              {% if userType == "Student" %}
+
+              <form
+                action="{{ url_for('edit_student', StudentId=Intid )}}"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="top-0 delete-btn"
+                  id="edit_student"
+                >
+                  <h1 class="righteous text-[#FFF] text-[1.0rem]">
+                    change pwd
+                  </h1>
+                </button>
+              </form>
+              {% endif %} {% if userType == "Teacher" %}
+              <form
+                action="{{ url_for('edit_teacher', TeacherId=Intid )}}"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="top-0 delete-btn"
+                  id="edit_teacher"
+                >
+                  <h1 class="righteous text-[#FFF] text-[1.0rem]">
+                    change pwd
+                  </h1>
+                </button>
+              </form>
+              {% endif %} {% if userType == "Admin" %}
+              <form
+                action="{{ url_for('edit_admin', AdminId=Intid )}}"
+                method="POST"
+              >
+                <button type="submit" class="top-0 delete-btn" id="edit_admin">
+                  <h1 class="righteous text-[#FFF] text-[1.0rem]">
+                    change pwd
+                  </h1>
+                </button>
+              </form>
+              {% endif %}
+
+              <img
+                class="w-[1.5rem]"
+                src="{{ url_for('static', filename='img/edit.svg') }}"
+                alt=""
+              />
+            </div>
+
+            <!-- Log Out -->
+
+            <form
+              action="{{ url_for('logout')}}"
+              method="POST"
+              class="flex-1 w-[100%] flex flex-row items-center justify-between bg-[#900A09]"
+            >
+              <button
+                type="submit"
+                class="flex flex-row items-center justify-between pl-[2.1rem] pr-[2.24rem] bg-[#900A09] flex- w-[100%]"
+              >
+                <h1 class="text-[#FFF] righteous text-[1.0rem]">Log Out</h1>
+                <img
+                  class="w-[1.5rem]"
+                  src="{{ url_for('static', filename='img/logOut.svg') }}"
+                  alt=""
+                />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section -->
+      <div
+        class="flex flex-col md:flex-row md:justify-between md:pl-[2rem] md:pr-[2rem] lg:pl-[3.5rem] lg:pr-[3.5rem] h-[65%] pt-[3rem] md:gap-x-[1rem] lg:gap-x-[2rem]"
+      >
+        {% if userType != 'Admin' %}
+        <!-- Upcoming Test -->
+        <div
+          class="bg-[#803630] h-[100%] w-[22rem] max-w-[80%] rounded-[3rem] flex-1 flex flex-col items-center pt-[1.5rem] pb-[0.1rem]"
+        >
+          <h1
+            class="lg:text-[2.6rem] md:text-[2rem] righteous text-[#FFF] overflow-visible text-center"
+          >
+            Upcoming Test
+          </h1>
+          <!--Add new Test-->
+
+          {% if userType == 'Teacher' %}
+          <div
+            class="bg-[#95413A] min-h-[4.3rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem]"
+          >
+            <h1
+              class="absolute top-[-0.7rem] left-[1.5rem] text-[#FFF] text-[0.9rem] righteous"
+            >
+              Add new Test
+            </h1>
+
+            <form
+              action="/dashboard"
+              method="POST"
+              class="flex gap-x-[0.6rem] items-center align-center justify-center"
+            >
+              <input
+                type="text"
+                hidden
+                class="hidden"
+                name="type"
+                value="Test"
+              />
+              <input
+                required
+                type="text"
+                name="name"
+                placeholder="Test name"
+                class="bg-transparent border-b-[0.1rem] text-[#fff] focus:outline-none righteous w-[40%] translate-y-[0.2rem] placeholder-[rgba(255,255,255,0.4)]"
+              />
+              <input
+                required
+                type="date"
+                name="date"
+                placeholder="Date"
+                class="bg-transparent border-b-[0.1rem] text-[#fff] focus:outline-none righteous w-[31%] translate-y-[0.2rem] placeholder-[rgba(255,255,255,0.4)] text-[0.8rem] mr-6"
+              />
+              <input type="submit" id="submit1" hidden />
+              <label for="submit1" class="hover:cursor-pointer">
+                <div
+                  class="absolute h-[2.4rem] w-[2.4rem] rounded-full bg-[rgba(255,255,255,0.4)] right-[0.5rem] top-[50%] translate-y-[-50%] flex items-center justify-center"
+                >
+                  <img
+                    src="{{ url_for('static', filename='img/arrow.svg') }}"
+                    alt=""
+                    class="h-[2.1rem] w-[2.1rem]"
+                  />
+                </div>
+              </label>
+            </form>
+          </div>
+          {% endif %}
+
+          <!--LIst of test-->
+          <div
+            class="flex flex-col gap-y-[0.4rem] items-center w-[85%] overflow-scroll mt-[0.4rem] max-h-[20rem]"
+          >
+            {% for test in tests %}
+            <div
+              class="flex flex-row justify-between items-center w-[100%] rounded-full px-4 py-2 overflow-visible b-[#95413A]"
+            >
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ test[1] }}
+              </h1>
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ test[2] }}
+              </h1>
+
+              {% if userType != 'Student' %}
+              <div class="relative w-[1rem]">
+                <form
+                  class="relative"
+                  action="{{ url_for('delete_test', TestId=test[0] )}}"
+                  method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this user?');"
+                >
+                  <button
+                    type="submit"
+                    class="absoute top-0 delete-btn"
+                    id="delete_test"
+                  >
+                    <img
+                      src="{{ url_for('static', filename='img/delete.svg') }}"
+                      alt=""
+                      class="h-[1rem] w-[1rem]"
+                    />
+                  </button>
+                </form>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %} {% if userType != 'Admin' %}
+        <!-- Notices -->
+        <div
+          class="bg-[#803630] h-[100%] w-[22rem] max-w-[80%] rounded-[3rem] flex-1 flex flex-col items-center pt-[1.5rem] pb-[0.1rem]"
+        >
+          <h1
+            class="lg:text-[2.6rem] md:text-[2rem] righteous text-[#FFF] overflow-visible"
+          >
+            Notices
+          </h1>
+          {% if userType == 'Teacher' %}
+          <!--Add new Notice-->
+          <div
+            class="bg-[#95413A] min-h-[4.3rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem]"
+          >
+            <h1
+              class="absolute top-[-0.7rem] left-[1.5rem] text-[#FFF] text-[0.9rem] righteous"
+            >
+              Add new Notice
+            </h1>
+            <form
+              action="/dashboard"
+              method="POST"
+              class="flex gap-x-[0.6rem] items-center align-center justify-center"
+            >
+              <input
+                type="text"
+                hidden
+                class="hidden"
+                name="type"
+                value="Notice"
+              />
+              <input
+                required
+                type="text"
+                name="name"
+                placeholder="Notice name"
+                class="bg-transparent border-b-[0.1rem] text-[#fff] focus:outline-none righteous w-[40%] translate-y-[0.2rem] placeholder-[rgba(255,255,255,0.4)]"
+              />
+              <input
+                required
+                type="date"
+                name="date"
+                placeholder="Date"
+                class="bg-transparent border-b-[0.1rem] text-[#fff] focus:outline-none righteous w-[31%] translate-y-[0.2rem] placeholder-[rgba(255,255,255,0.4)] text-[0.8rem] mr-6"
+              />
+              <input type="submit" id="submit2" hidden />
+              <label for="submit2" class="hover:cursor-pointer">
+                <div
+                  class="absolute h-[2.4rem] w-[2.4rem] rounded-full bg-[rgba(255,255,255,0.4)] right-[0.5rem] top-[50%] translate-y-[-50%] flex items-center justify-center"
+                >
+                  <img
+                    src="{{ url_for('static', filename='img/arrow.svg') }}"
+                    alt=""
+                    class="h-[2.1rem] w-[2.1rem]"
+                  />
+                </div>
+              </label>
+            </form>
+          </div>
+          {% endif %}
+          <!--LIst of noteices-->
+          <div
+            class="flex flex-col gap-y-[0.4rem] items-center w-[85%] max-h-[20rem] mt-[0.4rem] overflow-scroll"
+          >
+            {% for notice in notices %}
+            <div
+              class="flex flex-row justify-between items-center w-[100%] rounded-full px-4 py-2 overflow-visible"
+            >
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ notice[1] }}
+              </h1>
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ notice[2] }}
+              </h1>
+              {% if userType != 'Student' %}
+              <div class="relative w-[1rem]">
+                <form
+                  class="relative"
+                  action="{{ url_for('delete_notice', NoticeId=notice[0] )}}"
+                  method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this user?');"
+                >
+                  <button type="submit" class="absoute top-0 delete-btn">
+                    <img
+                      src="{{ url_for('static', filename='img/delete.svg') }}"
+                      alt=""
+                      class="h-[1rem] w-[1rem]"
+                    />
+                  </button>
+                </form>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %} {% if userType != 'Admin' %}
+        <!-- Holidays -->
+        <div
+          class="bg-[#803630] h-[100%] w-[22rem] max-w-[85%] flex flex-col items-center rounded-[3rem] flex-1 pt-[1.5rem] pb-[0.1rem]"
+        >
+          <h1
+            class="lg:text-[2.6rem] md:text-[2rem] righteous text-[#FFF] overflow-visible"
+          >
+            Holidays
+          </h1>
+          {% if userType == 'Teacher' %}
+          <!--Add new Holiday-->
+          <div
+            class="bg-[#95413A] min-h-[4.3rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem]"
+          >
+            <h1
+              class="absolute top-[-0.7rem] left-[1.5rem] text-[#FFF] text-[0.9rem] righteous"
+            >
+              Add new Holiday
+            </h1>
+
+            <form
+              action="/dashboard"
+              method="POST"
+              class="flex gap-x-[0.6rem] items-center align-center justify-center"
+            >
+              <input
+                type="text"
+                hidden
+                class="hidden"
+                name="type"
+                value="Holidays"
+              />
+              <input
+                required
+                type="text"
+                name="name"
+                placeholder="Holiday name"
+                class="bdown bg-transparent border-b-[0.1rem] text-[#fff] focus:outline-none righteous w-[40%] translate-y-[0.2rem] placeholder-[rgba(255,255,255,0.4)] text-[1rem]"
+              />
+              <input
+                required
+                type="date"
+                name="date"
+                placeholder="Date"
+                class="bg-transparent border-b-[0.1rem] text-[#fff] focus:outline-none righteous w-[31%] translate-y-[0.2rem] placeholder-[rgba(255,255,255,0.4)] text-[0.8rem] mr-6"
+              />
+              <input type="submit" id="submit3" hidden />
+              <label for="submit3" class="hover:cursor-pointer">
+                <div
+                  class="absolute h-[2.4rem] w-[2.4rem] rounded-full bg-[rgba(255,255,255,0.4)] right-[0.5rem] top-[50%] translate-y-[-50%] flex items-center justify-center"
+                >
+                  <img
+                    src="{{ url_for('static', filename='img/arrow.svg') }}"
+                    alt=""
+                    class="h-[2.1rem] w-[2.1rem]"
+                  />
+                </div>
+              </label>
+            </form>
+          </div>
+          {% endif %}
+          <!--LIst of Holidays-->
+          <div
+            class="flex flex-col gap-y-[0.4rem] items-center w-[85%] max-h-[20rem] overflow-scroll mt-[0.4rem]"
+          >
+            {% for holiday in holidays %}
+            <div
+              class="flex flex-row justify-between items-center w-[100%] rounded-full px-4 py-2 overflow-visible"
+            >
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ holiday[1] }}
+              </h1>
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ holiday[2] }}
+              </h1>
+              {% if userType != 'Student' %}
+              <div class="relative w-[1rem]">
+                <form
+                  class="relative"
+                  action="{{ url_for('delete_holiday', HolidayId=holiday[0] )}}"
+                  method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this user?');"
+                >
+                  <button
+                    type="submit"
+                    class="absoute top-0 delete-btn"
+                    id="delete_test"
+                  >
+                    <img
+                      src="{{ url_for('static', filename='img/delete.svg') }}"
+                      alt=""
+                      class="h-[1rem] w-[1rem]"
+                    />
+                  </button>
+                </form>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %} {% if userType == 'Admin' %}
+        <div
+          class="bg-[#803630] h-[100%] w-[22rem] max-w-[80%] rounded-[3rem] flex-1 flex flex-col items-center pt-[1.5rem] pb-[0.1rem]"
+        >
+          <h1
+            class="lg:text-[2.6rem] md:text-[2rem] righteous text-[#FFF] overflow-visible"
+          >
+            Students: {{students|length }}
+          </h1>
+
+          <!--Add new Student-->
+          <a
+            href="{{ url_for('newAdmission') }}"
+            class="bg-[#95413A] min-h-[4.3rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem] hover:cursor-pointer"
+          >
+            <div
+              class="bg-[#95413A] h-[2.5rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem] hover:cursor-pointer"
+            >
+              <h1 class="text-[#FFF] text-[1.2rem] righteous">New Admission</h1>
+              <img
+                src="{{ url_for('static', filename='img/plus.svg') }}"
+                alt=""
+                class="h-[2rem] w-[2rem] border-0"
+              />
+            </div>
+          </a>
+          <div
+            class="flex flex-col gap-y-[0.4rem] items-center w-[85%] overflow-scroll mt-[0.4rem] max-h-[20rem]"
+          >
+            {% for student in students %}
+            <div
+              class="flex flex-row justify-between items-center w-[100%] rounded-full px-4 py-2 overflow-visible b-[#95413A]"
+            >
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ student[2] }}
+              </h1>
+              <div class="relative w-[3rem] flex gap-x-[0.6rem]">
+                <form
+                  class="relative"
+                  action="{{ url_for('delete_student', StudentId=student[0] )}}"
+                  method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this user?');"
+                >
+                  <button
+                    type="submit"
+                    class="absoute top-0 delete-btn"
+                    id="delete_student"
+                  >
+                    <img
+                      src="{{ url_for('static', filename='img/delete.svg') }}"
+                      alt=""
+                      class="h-[1rem] w-[1rem]"
+                    />
+                  </button>
+                </form>
+                <form
+                  action="{{ url_for('edit_student', StudentId=student[0] )}}"
+                  method="POST"
+                >
+                  <button
+                    type="submit"
+                    class="absoute top-0 delete-btn"
+                    id="edit_student"
+                  >
+                    <img
+                      src="{{ url_for('static', filename='img/edit.svg') }}"
+                      alt=""
+                      class="h-[1rem] w-[1rem]"
+                    />
+                  </button>
+                </form>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div
+          class="bg-[#803630] h-[100%] w-[22rem] max-w-[80%] rounded-[3rem] flex-1 flex flex-col items-center pt-[1.5rem] pb-[0.1rem]"
+        >
+          <h1
+            class="lg:text-[2.6rem] md:text-[2rem] righteous text-[#FFF] overflow-visible"
+          >
+            Teachers: {{ teachers|length }}
+          </h1>
+
+          <!--Add new Teacher -->
+          <a
+            href="{{ url_for('newAdmission') }}"
+            class="bg-[#95413A] min-h-[4.3rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem] hover:cursor-pointer"
+          >
+            <div
+              class="bg-[#95413A] h-[2.5rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem] hover:cursor-pointer"
+            >
+              <h1 class="text-[#FFF] text-[1.2rem] righteous">New Teacher</h1>
+              <img
+                src="{{ url_for('static', filename='img/plus.svg') }}"
+                alt=""
+                class="h-[2rem] w-[2rem] border-0"
+              />
+            </div>
+          </a>
+          <div
+            class="flex flex-col gap-y-[0.4rem] items-center w-[85%] overflow-scroll mt-[0.4rem] max-h-[20rem]"
+          >
+            {% for teacher in teachers %}
+            <div
+              class="flex flex-row justify-between items-center w-[100%] rounded-full px-4 py-2 overflow-visible b-[#95413A]"
+            >
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ teacher[2] }}
+              </h1>
+              <div class="relative w-[3rem] flex gap-x-[0.6rem]">
+                <form
+                  class="relative"
+                  action="{{ url_for('delete_teacher', TeacherId=teacher[0] )}}"
+                  method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this user?');"
+                >
+                  <button
+                    type="submit"
+                    class="absoute top-0 delete-btn"
+                    id="delete_teacher"
+                  >
+                    <img
+                      src="{{ url_for('static', filename='img/delete.svg') }}"
+                      alt=""
+                      class="h-[1rem] w-[1rem]"
+                    />
+                  </button>
+                </form>
+                <form
+                  action="{{ url_for('edit_teacher', TeacherId=teacher[0] )}}"
+                  method="POST"
+                >
+                  <button
+                    type="submit"
+                    class="absoute top-0 delete-btn"
+                    id="edit_teacher"
+                  >
+                    <img
+                      src="{{ url_for('static', filename='img/edit.svg') }}"
+                      alt=""
+                      class="h-[1rem] w-[1rem]"
+                    />
+                  </button>
+                </form>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div
+          class="bg-[#803630] h-[100%] w-[22rem] max-w-[80%] rounded-[3rem] flex-1 flex flex-col items-center pt-[1.5rem] pb-[0.1rem]"
+        >
+          <h1
+            class="lg:text-[2.6rem] md:text-[2rem] righteous text-[#FFF] overflow-visible"
+          >
+            Admins: {{ admins|length }}
+          </h1>
+
+          <!--Add new Admin-->
+          <a
+            href="{{ url_for('newAdmission') }}"
+            class="bg-[#95413A] min-h-[4.3rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem] hover:cursor-pointer"
+          >
+            <div
+              class="bg-[#95413A] h-[2.5rem] w-[74%] rounded-full relative overflow-visible mt-[1.1rem] mb-4 flex items-center text-center align-center justify-center gap-x-[0.6rem] hover:cursor-pointer"
+            >
+              <h1 class="text-[#FFF] text-[1.2rem] righteous">New Admin</h1>
+              <img
+                src="{{ url_for('static', filename='img/plus.svg') }}"
+                alt=""
+                class="h-[2.1rem] w-[2.1rem] border-0"
+              />
+            </div>
+          </a>
+          <div
+            class="flex flex-col gap-y-[0.4rem] items-center w-[85%] overflow-scroll mt-[0.4rem] max-h-[20rem]"
+          >
+            {% for admin in admins %}
+            <div
+              class="flex flex-row justify-between items-center w-[100%] rounded-full px-4 py-2 overflow-visible b-[#95413A]"
+            >
+              <h1 class="text-[#FFF] text-[0.9rem] righteous overflow-visible">
+                {{ admin[2] }}
+              </h1>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

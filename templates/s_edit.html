@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Tailwind CDN -->
+    <script src="{{ url_for('static', filename='js/cdn.js') }}"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Admission</title>
+    <style>
+      label {
+        font-family: righteous;
+        color: white;
+        font-size: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 0.2rem;
+      }
+      .sub-btn {
+        font-family: "Righteous", sans-serif;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        background-color: #fdecd9;
+        border-radius: 99rem;
+        font-size: 0.84rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-right: 1.1rem;
+      }
+    </style>
+  </head>
+  <body class="h-screen bg-[#FDECD9]">
+    <!-- Brown Dots Overlay -->
+
+    <div
+      class="absolute top-0 h-[100%] opacity-20 z-[-3] w-[100%] bg-[url('{{ url_for('static', filename='img/brown-dots.svg') }}')] bg-center bg-cover"
+    ></div>
+
+    <!-- GMSS_32 Menu -->
+    <div
+      class="bg-[#803630] z-[10] md:pt-7 md:pl-16 md:pr-20 md:pb-9 px-12 py-6 fixed left-[0px] rounded-ee-[3.8rem] top-[0px]"
+    >
+      <h1
+        class="text-[#FDECD9] righteous md:text-[2.6rem] text-[2rem] font-bold"
+      >
+        GMSSS-32
+      </h1>
+    </div>
+    <!-- Container wrapper -->
+    <div
+      class="bg-[#803630] min-h-[20rem]x rounded-[3rem] absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] pl-[3.2rem] pr-[3.2rem] pb-[2.8rem]"
+    >
+      <div class="relative h-full w-full">
+        <div class="w-[100%] flex justify-center align-center items-center">
+          <h1
+            class="text-[#fff] text-[2.4rem] righteous pt-[1.5rem] pl--[2.5rem]"
+          >
+            Edit Profile
+          </h1>
+        </div>
+
+        <div class="flex flex-col">
+          <form
+            action="{{ url_for('student_editing') }}"
+            method="post"
+            class="flex flex-col"
+          >
+            <input type="text" value="username" name="column" hidden />
+            <label for="name">Name</label>
+            <div class="flex flex-row gap-x-[0.8rem]">
+              <input
+                required
+                type="text"
+                name="username"
+                id="name"
+                placeholder="Type new Name"
+                class="p-[0.45rem] text-[0.9rem] bg-[#FDECD9] rounded-[0.4rem] righteous max-w-[20rem]"
+              />
+              <input type="submit" value="Save" class="sub-btn" />
+            </div>
+          </form>
+        </div>
+        <div class="flex flex-row gap-x-[0.8rem]">
+          <div class="flex flex-col">
+            <form
+              action="{{ url_for('student_editing') }}"
+              method="post"
+              class="flex flex-col"
+            >
+              <input type="text" value="dob" name="column" hidden />
+              <label for="dob" id="label1">Date of Birth</label>
+              <div class="flex flex-row gap-x-[0.8rem]">
+                <input
+                  type="date"
+                  name="dob"
+                  id="dob"
+                  required
+                  class="p-[0.45rem] text-[0.8rem] bg-[#FDECD9] rounded-[0.4rem] w-[8.8rem] righteous"
+                />
+                <input type="submit" value="Save" class="sub-btn" />
+              </div>
+            </form>
+          </div>
+          <div class="flex flex-col">
+            <form
+              action="{{ url_for('student_editing') }}"
+              method="post"
+              class="flex flex-col"
+            >
+              <input type="text" value="gender" name="column" hidden />
+              <label for="gender" id="label2">Gender</label>
+              <div class="flex flex-row gap-x-[0.8rem]">
+                <select
+                  name="gender"
+                  id="gender"
+                  required
+                  class="p-[0.45rem] text-[0.8rem] bg-[#FDECD9] rounded-[0.4rem] w-[8.8rem] righteous"
+                >
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+                <input type="submit" value="Save" class="sub-btn" />
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="flex flex-row gap-x-[0.8rem]">
+          <div class="flex flex-col">
+            <form
+              action="{{ url_for('student_editing') }}"
+              method="post"
+              class="flex flex-col"
+            >
+              <input type="text" value="class" name="column" hidden />
+              <label for="class" id="label3">Class</label>
+              <div class="flex flex-row gap-x-[0.8rem]">
+                <select
+                  name="class"
+                  id="class"
+                  required
+                  class="p-[0.45rem] text-[0.8rem] bg-[#FDECD9] rounded-[0.4rem] w-[8.8rem] righteous"
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+                <input type="submit" value="Save" class="sub-btn" />
+              </div>
+            </form>
+          </div>
+          <div class="flex flex-col">
+            <form
+              action="{{ url_for('student_editing') }}"
+              method="post"
+              class="flex flex-col"
+            >
+              <input type="text" value="section" name="column" hidden />
+
+              <label for="Section" id="label4">Section</label>
+              <div class="flex flex-row gap-x-[0.8rem]">
+                <select
+                  name="section"
+                  id="section"
+                  required
+                  class="p-[0.45rem] text-[0.8rem] bg-[#FDECD9] rounded-[0.4rem] w-[8.8rem] righteous"
+                >
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </select>
+                <input type="submit" value="Save" class="sub-btn" />
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="flex-[4] flex flex-col gap-y-[1.0rem]">
+          <form
+            action="{{ url_for('student_editing') }}"
+            method="post"
+            class="flex flex-col"
+          >
+            <input type="text" value="userId" name="column" hidden />
+            <label for="userId">user ID (for login)</label>
+            <div class="flex flex-row gap-x-[0.8rem]">
+              <input
+                type="text"
+                name="userId"
+                id="userId"
+                required
+                class="p-[0.45rem] text-[0.9rem] bg-[#FDECD9] rounded-[0.4rem] righteous max-w-[20rem]"
+              />
+              <input type="submit" value="Save" class="sub-btn" />
+            </div>
+          </form>
+          <form action="{{ url_for('student_editing') }}" method="post">
+            <input type="text" value="pwd" name="column" hidden />
+            <label for="pwd">Password</label>
+            <div class="flex flex-row gap-x-[0.8rem]">
+              <input
+                type="password"
+                name="pwd"
+                id="pwd"
+                required
+                class="p-[0.45rem] text-[0.9rem] bg-[#FDECD9] rounded-[0.4rem] righteous max-w-[20rem]"
+              />
+              <input type="submit" value="Save" class="sub-btn" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
